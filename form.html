@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- INSERT LOGO HERE -->
+
+    <meta charset="UTF-8">
+    <link rel="icon" href="logo-bgn.png" type="image/x-icon">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGPA Calci 🧮</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .subject-inputs {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        .subject-inputs div {
+            flex: 0 0 48%;
+        }
+        .subject-inputs label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .subject-inputs input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+        h2, h3 {
+            text-align: center;
+        }
+        .footer {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>SGPA Calculator</h2>
+        <form id="sgpaForm">
+            <div id="subjectInputs"></div>
+            <input type="submit" value="Calculate SGPA">
+        </form>
+        <div id="sgpaResult" style="display: none;">
+            <h3>Your SGPA is: <span id="sgpaValue"></span></h3>
+        </div>
+        <div class="footer">
+            <a style="color: black; text-decoration: none;" href="https://github.com/saimahendra282" target="_blank">&copy; Coded by Sai ||2024.</a>
+        </div>
+    </div>
+
+    <script>
+        window.onload = function() {
+            var params = new URLSearchParams(window.location.search);
+            var numSubjects = parseInt(params.get('numSubjects'));
+            var subjectInputsHtml = '';
+
+            for (var i = 1; i <= numSubjects; i++) {
+                subjectInputsHtml += '<div class="subject-inputs">';
+                subjectInputsHtml += '<div><label for="credit' + i + '">Credit for Subject ' + i + ':</label>';
+                subjectInputsHtml += '<input type="text" id="credit' + i + '" name="credit' + i + '" required></div>';
+                subjectInputsHtml += '<div><label for="grade' + i + '">Grade Point for Subject ' + i + ':</label>';
+                subjectInputsHtml += '<input type="text" id="grade' + i + '" name="grade' + i + '" required></div>';
+                subjectInputsHtml += '</div>';
+            }
+
+            document.getElementById('subjectInputs').innerHTML = subjectInputsHtml;
+
+            document.getElementById('sgpaForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                var creditGradeSum = 0;
+                var tenCreditSum = 0;
+
+                for (var i = 1; i <= numSubjects; i++) {
+                    var credit = parseFloat(document.getElementById('credit' + i).value);
+                    var grade = parseFloat(document.getElementById('grade' + i).value);
+
+                    creditGradeSum += credit * grade;
+                    tenCreditSum += credit * 10;
+                }
+
+                var sgpa = (creditGradeSum / tenCreditSum) * 10;
+                document.getElementById('sgpaValue').textContent = sgpa.toFixed(2);
+                document.getElementById('sgpaResult').style.display = 'block';
+            });
+        };
+    </script>
+</body>
+</html>

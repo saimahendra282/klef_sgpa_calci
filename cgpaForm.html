@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Background</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        #video-background, #video-background-mobile {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            z-index: -1000;
+            object-fit: cover;
+        }
+
+        #video-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .content {
+            text-align: center;
+        }
+
+        @media only screen and (max-width: 600px) {
+            #video-background, #video-background-mobile {
+                width: 100%;
+                height: auto;
+                left: 50%;
+                top: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <video id="video-background" autoplay muted loop>
+        <source src="shit.mp4" type="video/mp4">
+        <!-- Add additional video sources (e.g., WebM, Ogg) if needed -->
+    </video>
+
+    <video id="video-background-mobile" autoplay muted loop>
+        <source src="mob.mp4" type="video/mp4">
+        <!-- Add additional video sources (e.g., WebM, Ogg) if needed -->
+    </video>
+
+    <div id="video-content" class="content">
+        <h1>Welcome to My Site</h1>
+        <!-- Add any additional content here -->
+    </div>
+
+    <script>
+        alert("Oh, a  visitor hmm");
+        alert("so you clicked on the link");
+        alert("hm.. reason maybe you are..");
+        alert("a dumb klef student like me 🥹");
+        alert("so you dont know how to calculate your SGPA..");
+        alert("dont worry i got you 😉");
+        // Check if the website is being viewed on a mobile device
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+        // Hide the appropriate video based on the device
+        if (isMobile) {
+            document.getElementById('video-background').style.display = 'none';
+        } else {
+            document.getElementById('video-background-mobile').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
