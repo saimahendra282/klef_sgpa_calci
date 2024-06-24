@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SGPA Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .result-container {
+            text-align: center;
+        }
+        .sgpa {
+            font-size: 36px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        .alert-text {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        #gifImage {
+            border-radius: 50%;
+            width: 200px; /* Adjust the width as needed */
+            height: 200px; /* Adjust the height as needed */
+        /* /    object-fit: cover; */
+                }
+    </style>
+</head>
+<body>
+    <div class="result-container">
+        <img id="gifImage" src="" alt="Result GIF">
+        <div class="sgpa">SGPA: <span id="sgpaValue"></span></div>
+        <div class="alert-text" id="alertText"></div>
+    </div>
+
+    <script>
+        var params = new URLSearchParams(window.location.search);
+        var sgpa = parseFloat(params.get('sgpa'));
+
+        var gifImage = document.getElementById("gifImage");
+
+        if (sgpa < 6.9) {
+            gifImage.src = "Sai.gif";
+            document.getElementById("alertText").textContent = "Nee SGPA " + sgpa + " idhi placement ki kaadhu kadha naalika geesukodaaniki kuda paniki raadhu bro!! 😕. Konchom jaagarthaga chuduvu...";
+        } else if (sgpa < 8.5) {
+            gifImage.src = "DUMMY-unscreen.gif";
+            document.getElementById("alertText").textContent = "Hm parla nee SGPA " + sgpa + " kaani nuvvu honors ki kaani CRT kaani vallalante inka chadhavaali.... So study more";
+        }
+        else if(sgpa == 10.0){
+            gifImage.src = "Onechan.gif";
+            document.getElementById("alertText").textContent = "Hm " + sgpa + " sgpa ga, jaathini ....... 🔥 ";
+        }
+         else {
+            gifImage.src = "gif3.gif";
+            document.getElementById("alertText").textContent = "Ew Topper hm enti mari " + sgpa + " kottavuga, inka party chesuko.. 🥳";
+        }
+
+        document.getElementById("sgpaValue").textContent = sgpa;
+    </script>
+</body>
+</html>
