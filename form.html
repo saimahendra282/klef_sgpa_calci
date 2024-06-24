@@ -89,7 +89,7 @@
             var params = new URLSearchParams(window.location.search);
             var numSubjects = parseInt(params.get('numSubjects'));
             var subjectInputsHtml = '';
-
+    
             for (var i = 1; i <= numSubjects; i++) {
                 subjectInputsHtml += '<div class="subject-inputs">';
                 subjectInputsHtml += '<div><label for="credit' + i + '">Credit for Subject ' + i + ':</label>';
@@ -98,28 +98,30 @@
                 subjectInputsHtml += '<input type="text" id="grade' + i + '" name="grade' + i + '" required></div>';
                 subjectInputsHtml += '</div>';
             }
-
+    
             document.getElementById('subjectInputs').innerHTML = subjectInputsHtml;
-
+    
             document.getElementById('sgpaForm').addEventListener('submit', function(event) {
                 event.preventDefault();
-
+    
                 var creditGradeSum = 0;
                 var tenCreditSum = 0;
-
+    
                 for (var i = 1; i <= numSubjects; i++) {
                     var credit = parseFloat(document.getElementById('credit' + i).value);
                     var grade = parseFloat(document.getElementById('grade' + i).value);
-
+    
                     creditGradeSum += credit * grade;
                     tenCreditSum += credit * 10;
                 }
-
+    
                 var sgpa = (creditGradeSum / tenCreditSum) * 10;
-                document.getElementById('sgpaValue').textContent = sgpa.toFixed(2);
-                document.getElementById('sgpaResult').style.display = 'block';
+    
+                var redirectUrl = "result.html?sgpa=" + sgpa.toFixed(2);
+                window.location.href = redirectUrl;
             });
         };
     </script>
+    
 </body>
 </html>
