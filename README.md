@@ -14,3 +14,10 @@ FIRST IT TAKES NO OF SUBJECTS AS INPUT AND NEXT FOLLOWED BY CREDITS AND GRADE PO
 </div>
 # 100 % accuracy<br>
 this web is created based on true calculations
+# procedure for manual calculation:
+Test Case : my 1st year sem 2 result calculation:
+1. write down all your grade points and credits for each subjects:
+<img height="300" width="300" src="https://github.com/saimahendra282/klef_sgpa_calci/assets/118994059/35af0b99-3775-4f8f-9965-8445d55f77b5">
+2.first calculate sum of credits:
+<h1>For me Sum is 21</h1>
+3. ...... incomplete
